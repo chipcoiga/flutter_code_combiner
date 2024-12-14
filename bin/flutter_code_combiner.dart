@@ -1,9 +1,16 @@
 import 'dart:io';
-import 'package:path/path.dart' as path;
 import 'package:args/args.dart';
 import 'package:flutter_code_combiner/flutter_code_combiner.dart';
+import 'package:logging/logging.dart';
 
 void main(List<String> arguments) async {
+  // Setup logging
+  Logger.root.level = Level.INFO;
+  Logger.root.onRecord.listen((record) {
+    stderr.writeln('${record.level.name}: ${record.message}');
+  });
+
+  final logger = Logger('flutter_code_combiner');
   final parser = ArgParser()
     ..addOption('input', abbr: 'i', help: 'Input Flutter project directory')
     ..addOption('output', abbr: 'o', help: 'Output file path')
@@ -13,9 +20,9 @@ void main(List<String> arguments) async {
     final args = parser.parse(arguments);
 
     if (args['help'] || args['input'] == null) {
-      print(
+      stderr.writeln(
           'Usage: flutter_code_combiner --input <project_dir> --output <output_file>');
-      print(parser.usage);
+      stderr.writeln(parser.usage);
       exit(0);
     }
 
@@ -27,9 +34,9 @@ void main(List<String> arguments) async {
     final output = File(outputFile);
     await output.writeAsString(combined);
 
-    print('Combined code written to: ${output.absolute.path}');
+    logger.info('Combined code written to: ${output.absolute.path}');
   } catch (e) {
-    print('Error: $e');
+    logger.severe('Error: $e');
     exit(1);
   }
 }

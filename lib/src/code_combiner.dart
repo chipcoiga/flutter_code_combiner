@@ -60,11 +60,11 @@ class CodeCombiner {
 
     processedFiles.add(relativePath);
 
-    combinedCode.writeln('\n// File: $relativePath');
-    combinedCode.writeln('// ' + '=' * 80);
-
     final content = await file.readAsString();
-    combinedCode.writeln(content);
+    combinedCode
+      ..writeln('\n// File: $relativePath')
+      ..writeln('// ${'-' * 80}')
+      ..writeln(content);
   }
 
   String getResult() => combinedCode.toString();
