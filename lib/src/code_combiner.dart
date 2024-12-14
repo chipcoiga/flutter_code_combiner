@@ -72,6 +72,11 @@ class CodeCombiner {
 
 class FlutterCodeCombiner {
   static Future<String> combineProject(String projectPath) async {
+    // Verify directory exists
+    if (!await Directory(projectPath).exists()) {
+      throw FileSystemException('Directory not found', projectPath);
+    }
+
     final combiner = CodeCombiner(projectPath);
     await combiner.combine();
     return combiner.getResult();
