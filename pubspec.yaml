@@ -1,6 +1,6 @@
 name: flutter_code_combiner
 description: A Flutter package to combine all Flutter project files into a single file for AI tools
-version: 1.0.0-dev.1
+version: 1.0.1-dev.1
 homepage: https://github.com/chipcoiga/flutter_code_combiner
 repository: https://github.com/chipcoiga/flutter_code_combiner.git
 

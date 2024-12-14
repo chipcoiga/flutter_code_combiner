@@ -32,9 +32,6 @@ Initial release of flutter_code_combiner.
 * yaml: ^3.1.0
 * args: ^2.3.0
 
-## Next Release Plan (1.0.1)
-* Add file filtering options
-* Add custom directory support
-* Improve error messages
-* Add progress indicators for large projects
-* Add support for generating documentation
+## 1.0.1
+
+Update Readme, add example
